@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wyrdl - A Wordle-like</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#121212">
+</head>
+<body>
+  <header class="app-header" role="banner">
+    <h1 class="app-title" aria-label="Game title">Wyrdl</h1>
+    <div class="header-actions" role="toolbar" aria-label="Header actions">
+      <button id="helpBtn" class="icon-button" aria-label="How to play" title="How to play">?</button>
+      <button id="statsBtn" class="icon-button" aria-label="Statistics" title="Statistics">★</button>
+      <button id="settingsBtn" class="icon-button" aria-label="Settings" title="Settings">⚙</button>
+    </div>
+  </header>
+
+  <main id="app" class="app" role="main">
+    <section class="board" id="board" aria-label="Guess board" aria-live="polite"></section>
+    <section class="keyboard" id="keyboard" aria-label="On-screen keyboard"></section>
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  </main>
+
+  <dialog id="modal" class="modal" aria-modal="true">
+    <div class="modal-content" role="document">
+      <header class="modal-header">
+        <h2 id="modalTitle"></h2>
+        <button id="closeModal" class="icon-button" aria-label="Close">✕</button>
+      </header>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </dialog>
+
+  <script src="./script.js" defer></script>
+  <noscript>
+    <p>This game requires JavaScript enabled.</p>
+  </noscript>
+  
+</body>
+</html>
+
