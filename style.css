@@ -1,0 +1,346 @@
+:root {
+    --bg-color: #121213;
+    --surface-color: #1a1a1b;
+    --text-color: #ffffff;
+    --border-color: #3a3a3c;
+    --green: #6aaa64;
+    --yellow: #c9b458;
+    --gray: #86888a;
+    --light-gray: #121213;
+    --dark-gray: #3a3a3c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.instructions {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.color-example {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.color-example.correct {
+    background-color: var(--green);
+}
+
+.color-example.present {
+    background-color: var(--yellow);
+}
+
+.color-example.absent {
+    background-color: var(--gray);
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.game-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.1rem;
+}
+
+#new-game {
+    background: var(--surface-color);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+#new-game:hover {
+    background: var(--border-color);
+}
+
+.game-board {
+    margin-bottom: 40px;
+}
+
+.grid {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 8px;
+    margin: 0 auto;
+    max-width: 350px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+}
+
+.cell {
+    aspect-ratio: 1;
+    background-color: var(--surface-color);
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.cell.correct {
+    background-color: var(--green);
+    border-color: var(--green);
+}
+
+.cell.present {
+    background-color: var(--yellow);
+    border-color: var(--yellow);
+}
+
+.cell.absent {
+    background-color: var(--gray);
+    border-color: var(--gray);
+}
+
+.cell.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+.cell.flipped {
+    animation: flip 0.6s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateX(0deg);
+        background-color: var(--surface-color);
+    }
+    50% {
+        transform: rotateX(90deg);
+        background-color: var(--surface-color);
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
+}
+
+.keyboard {
+    margin-bottom: 20px;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.key {
+    background-color: var(--dark-gray);
+    color: var(--text-color);
+    border: none;
+    border-radius: 4px;
+    padding: 12px 8px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    min-width: 36px;
+    text-transform: uppercase;
+}
+
+.key.wide {
+    min-width: 50px;
+}
+
+.key:hover {
+    background-color: var(--border-color);
+}
+
+.key.correct {
+    background-color: var(--green);
+}
+
+.key.present {
+    background-color: var(--yellow);
+}
+
+.key.absent {
+    background-color: var(--gray);
+}
+
+.message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.message.hidden {
+    display: none;
+}
+
+.message-content {
+    background-color: var(--surface-color);
+    padding: 40px;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    text-align: center;
+    max-width: 350px;
+}
+
+#message-title {
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+
+#message-text {
+    font-size: 1.1rem;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+#message-btn {
+    background-color: var(--green);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#message-btn:hover {
+    background-color: #5a9a54;
+}
+
+.stats {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    padding: 4px 0;
+}
+
+.distribution-row {
+    display: flex;
+    align-items: center;
+    margin: 4px 0;
+    gap: 8px;
+}
+
+.bar-container {
+    flex: 1;
+    height: 20px;
+    background-color: var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 8px;
+}
+
+.bar {
+    height: 100%;
+    background-color: var(--green);
+    transition: width 0.5s ease;
+    border-radius: 10px;
+}
+
+.share-btn {
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 16px;
+    transition: background-color 0.2s;
+}
+
+.share-btn:hover {
+    background-color: var(--border-color);
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .cell {
+        font-size: 1.5rem;
+    }
+
+    .key {
+        padding: 10px 6px;
+        min-width: 30px;
+        font-size: 0.8rem;
+    }
+
+    .key.wide {
+        min-width: 40px;
+    }
+}
